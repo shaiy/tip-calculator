@@ -1,3 +1,5 @@
+import { REMOVED_ITEM } from '../items/actions';
+
 let id = 1;
 
 export const initialItems = [
@@ -6,6 +8,10 @@ export const initialItems = [
 ];
 
 export const reducer = (state = initialItems, action) => {
+  if (action.type === REMOVED_ITEM) {
+    return state.items.filter((item) => item.id !== action.payload.uuid);
+  }
+
   return state;
 };
 
