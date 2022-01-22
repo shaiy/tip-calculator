@@ -16,3 +16,11 @@ export const selectTotal = createSelector(
   [selectSubtotal, selectTipAmount],
   (subtotal, tipAmount) => subtotal + tipAmount
 );
+
+export const selectItem = (state, props) =>
+  state.items.find((item) => item.uuid === props.uuid);
+
+export const selectItemTotal = createSelector(
+  [selectItem],
+  (item) => item.price * item.quantity
+);

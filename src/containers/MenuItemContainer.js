@@ -5,6 +5,7 @@ import {
   updatePrice,
   updateQuantity
 } from '../store/items/actions';
+import { selectItemTotal } from '../store/items/selectors';
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -15,4 +16,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export const MenuItemContainer = connect(null, mapDispatchToProps)(MenuItem);
+const mapStateToProps = (state, props) => ({
+  total: selectItemTotal(state, props)
+});
+
+export const MenuItemContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MenuItem);
